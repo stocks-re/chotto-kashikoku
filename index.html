@@ -3,28 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ちょっと賢くなるクイズ</title>
+  <title>ちょっと賢くなるクイズ - 毎日の雑学クイズで、ちょっとだけ賢くなろう</title>
+  <meta name="description" content="毎日1問の雑学クイズで、ちょっとだけ賢くなろう。TikTok・YouTubeで毎日配信中。">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; color: #333; background: #f8f9fa; line-height: 1.8; }
-    .container { max-width: 640px; margin: 0 auto; padding: 60px 20px; }
-    h1 { font-size: 1.6rem; margin-bottom: 16px; }
-    p { margin-bottom: 16px; color: #555; }
-    .links { margin-top: 32px; }
-    .links a { display: inline-block; margin-right: 24px; color: #0066cc; text-decoration: none; }
-    .links a:hover { text-decoration: underline; }
-    footer { margin-top: 48px; font-size: 0.85rem; color: #999; }
+    body { font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif; color: #333; background: #0a1628; line-height: 1.8; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 50%, #0a1628 100%); color: #fff; text-align: center; padding: 80px 20px 60px; }
+    .hero h1 { font-size: 2.4rem; color: #d4a054; margin-bottom: 12px; }
+    .hero .tagline { font-size: 1.2rem; color: #c0c8d8; margin-bottom: 32px; }
+    .hero .badge { display: inline-block; background: #d4a054; color: #0a1628; padding: 8px 24px; border-radius: 24px; font-weight: bold; font-size: 0.95rem; }
+
+    /* About */
+    .about { background: #f8f9fa; padding: 60px 20px; }
+    .container { max-width: 720px; margin: 0 auto; }
+    .about h2 { font-size: 1.5rem; margin-bottom: 24px; color: #1a2a4a; text-align: center; }
+    .about p { margin-bottom: 16px; color: #555; }
+
+    /* Features */
+    .features { background: #fff; padding: 60px 20px; }
+    .features h2 { font-size: 1.5rem; margin-bottom: 32px; color: #1a2a4a; text-align: center; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; max-width: 720px; margin: 0 auto; }
+    .feature-card { background: #f8f9fa; border-radius: 12px; padding: 24px; text-align: center; }
+    .feature-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .feature-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: #1a2a4a; }
+    .feature-card p { font-size: 0.9rem; color: #666; }
+
+    /* How it works */
+    .how { background: #f8f9fa; padding: 60px 20px; }
+    .how h2 { font-size: 1.5rem; margin-bottom: 32px; color: #1a2a4a; text-align: center; }
+    .steps { max-width: 720px; margin: 0 auto; }
+    .step { display: flex; align-items: flex-start; margin-bottom: 24px; }
+    .step-num { background: #d4a054; color: #0a1628; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0; margin-right: 16px; }
+    .step-text h3 { font-size: 1rem; color: #1a2a4a; margin-bottom: 4px; }
+    .step-text p { font-size: 0.9rem; color: #666; }
+
+    /* Platforms */
+    .platforms { background: #fff; padding: 60px 20px; text-align: center; }
+    .platforms h2 { font-size: 1.5rem; margin-bottom: 32px; color: #1a2a4a; }
+    .platform-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .platform-link { display: inline-block; background: #1a2a4a; color: #fff; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.2s; }
+    .platform-link:hover { background: #2a3a5a; }
+    .platform-link.tiktok { background: #010101; }
+    .platform-link.youtube { background: #c4302b; }
+
+    /* Footer */
+    footer { background: #0a1628; color: #888; padding: 40px 20px; text-align: center; }
+    footer a { color: #aaa; text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: #d4a054; }
+    footer .copyright { margin-top: 16px; font-size: 0.85rem; }
+
+    /* App info */
+    .app-info { background: #f0f2f5; padding: 60px 20px; }
+    .app-info h2 { font-size: 1.5rem; margin-bottom: 24px; color: #1a2a4a; text-align: center; }
+    .info-table { max-width: 720px; margin: 0 auto; }
+    .info-table table { width: 100%; border-collapse: collapse; }
+    .info-table th, .info-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid #ddd; }
+    .info-table th { color: #1a2a4a; width: 30%; background: #e8ebf0; }
+    .info-table td { color: #555; }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- Hero -->
+  <section class="hero">
     <h1>ちょっと賢くなるクイズ</h1>
-    <p>TikTokに雑学クイズ動画を自動作成・投稿するアプリケーションです。個人開発者が自身のアカウント運用のために使用しています。</p>
-    <div class="links">
+    <p class="tagline">毎日1問の雑学クイズで、ちょっとだけ賢くなろう</p>
+    <span class="badge">TikTok / YouTube で毎日配信中</span>
+  </section>
+
+  <!-- About -->
+  <section class="about">
+    <div class="container">
+      <h2>このアプリについて</h2>
+      <p>「ちょっと賢くなるクイズ」は、毎日1問の雑学クイズをショート動画で配信するプロジェクトです。科学、歴史、生物、宇宙、言葉など幅広いジャンルから出題し、30秒で楽しく学べます。</p>
+      <p>本アプリケーションは、クイズ動画の自動生成およびTikTok・YouTubeへの投稿管理を行うための個人開発ツールです。個人開発者が自身のアカウント運用のために使用しています。</p>
+      <p>TikTok Content Posting APIを利用して、制作した動画を自動的にTikTokアカウントに投稿します。投稿されるコンテンツはすべてオリジナルの雑学クイズ動画です。</p>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features">
+    <div class="container">
+      <h2>特徴</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="icon">?</div>
+          <h3>毎日1問</h3>
+          <p>科学・歴史・生物・宇宙など幅広いジャンルから毎日出題</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">30s</div>
+          <h3>30秒で完結</h3>
+          <p>通勤・通学のスキマ時間にサクッと楽しめるショート動画</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon">4</div>
+          <h3>4択クイズ</h3>
+          <p>選択肢から答えを選ぶシンプルなクイズ形式。解説と豆知識付き</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="how">
+    <div class="container">
+      <h2>仕組み</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <h3>台本作成</h3>
+            <p>出題ジャンルを選び、問題・選択肢・解説・豆知識を作成します。事実確認を行い正確性を担保します。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <h3>動画生成</h3>
+            <p>テキスト読み上げ音声の合成、背景映像の選定、テロップの配置を自動で行い、ショート動画を生成します。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <h3>品質チェック</h3>
+            <p>生成された動画を確認し、音声の読み仮名、映像の適切さ、テロップの可読性をチェックします。</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">
+            <h3>投稿</h3>
+            <p>TikTok Content Posting APIおよびYouTube Data APIを使用して、各プラットフォームに動画を投稿します。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- App Information -->
+  <section class="app-info">
+    <div class="container">
+      <h2>アプリ情報</h2>
+      <div class="info-table">
+        <table>
+          <tr><th>アプリ名</th><td>ちょっと賢くなるクイズ</td></tr>
+          <tr><th>種類</th><td>動画投稿管理ツール（個人利用）</td></tr>
+          <tr><th>開発者</th><td>個人開発者</td></tr>
+          <tr><th>使用API</th><td>TikTok Content Posting API / YouTube Data API v3</td></tr>
+          <tr><th>投稿コンテンツ</th><td>オリジナル雑学クイズ動画（30秒ショート）</td></tr>
+          <tr><th>投稿先アカウント</th><td>@chotto_kashikoku（開発者自身のアカウント）</td></tr>
+          <tr><th>ユーザーデータ</th><td>第三者のデータは収集・保存しません</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Platforms -->
+  <section class="platforms">
+    <h2>配信プラットフォーム</h2>
+    <div class="platform-links">
+      <a href="https://www.tiktok.com/@chotto_kashikoku" class="platform-link tiktok" target="_blank" rel="noopener">TikTok</a>
+      <a href="https://www.youtube.com/@chotto_kashikoku" class="platform-link youtube" target="_blank" rel="noopener">YouTube</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div>
       <a href="terms.html">利用規約</a>
       <a href="privacy.html">プライバシーポリシー</a>
+      <a href="mailto:mens.esthe.pj@gmail.com">お問い合わせ</a>
     </div>
-    <footer>&copy; 2026 ちょっと賢くなるクイズ</footer>
-  </div>
+    <p class="copyright">&copy; 2026 ちょっと賢くなるクイズ. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
